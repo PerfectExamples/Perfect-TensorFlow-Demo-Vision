@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+  <title>Perfect TensorFlow Demo - Computer Vision</title>
+  <script type="text/javascript">
+  var canvas, ctx, flag = false,
+      prevX = 0,
+      currX = 0,
+      prevY = 0,
+      currY = 0,
+      dot_flag = false;
+
+  var outcome, fileInput;
+  var x = "black",
+      y = 2;
+
+  function init() {
+    outcome = document.getElementById('Outcome');
+    canvas = document.getElementById('hwcanvas');
+    fileInput = document.getElementById('file_input');
+
+    fileInput.addEventListener("change", function(e) {
+      var URL = window.webkitURL || window.URL;
+      var url = URL.createObjectURL(e.target.files[0]);
+      var img = new Image();
+      img.src = url;
+      img.onload = function () {
+        ctx.drawImage(img, 0, 0, 224, 224);
+      }//end img
+    }, false);
+
+    ctx = canvas.getContext("2d");
+    w = canvas.width;
+    h = canvas.height;
+
+    canvas.addEventListener("mousemove", function (e) {
+        findxy('move', e)
+    }, false);
+    canvas.addEventListener("mousedown", function (e) {
+        findxy('down', e)
+    }, false);
+    canvas.addEventListener("mouseup", function (e) {
+        findxy('up', e)
+    }, false);
+    canvas.addEventListener("mouseout", function (e) {
+        findxy('out', e)
+    }, false);
+    reset();
+  }
+
+  function draw() {
+    ctx.fillStyle = "rgb(0,0,0)";
+    ctx.beginPath();
+    ctx.moveTo(prevX, prevY);
+    ctx.lineTo(currX, currY);
+    ctx.strokeStyle = x;
+    ctx.lineWidth = y;
+    ctx.stroke();
+    ctx.closePath();
+  }
+
+  function reset() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = "rgb(255,255,255)";
+    ctx.fillRect(0, 0, w, h);
+    outcome.innerText = "";
+  }
+
+  function recog() {
+    var dataURL = canvas.toDataURL('image/jpeg', 1.0);
+    fetch('http://' + window.location.host + '/recognize',{method: 'post', body: dataURL})
+    .then( (resp) => { return resp.json() })
+    .then( (obj) => { outcome.innerText = obj.value });
+
+  }
+
+  function findxy(res, e) {
+    if (res == 'down') {
+      prevX = currX;
+      prevY = currY;
+      currX = e.clientX - canvas.offsetLeft;
+      currY = e.clientY - canvas.offsetTop;
+
+      flag = true;
+      dot_flag = true;
+      if (dot_flag) {
+          ctx.beginPath();
+          ctx.fillStyle = x;
+          ctx.fillRect(currX, currY, 2, 2);
+          ctx.closePath();
+          dot_flag = false;
+      }
+    }
+    if (res == 'up' || res == "out") {
+      flag = false;
+    }
+    if (res == 'move') {
+      if (flag) {
+          prevX = currX;
+          prevY = currY;
+          currX = e.clientX - canvas.offsetLeft;
+          currY = e.clientY - canvas.offsetTop;
+          draw();
+      }
+    }
+  }
+</script>
+</head>
+<body onload='init()'>
+  <H1>Perfect TensorFlow Demo - Computer Vision</H1>
+  <P>Swift program that uses a pre-trained Inception model (http://arxiv.org/abs/1512.00567)</P>
+  <canvas id="hwcanvas" width=224 height=224></canvas>
+  <p><input type=Reset onclick='reset()'>
+    <input type="file" id="file_input">
+    <input type=button value='Recognize' onclick='recog()'>
+  </p><hr><p>Note: local picture file must be a 224 x 224 image.</p><hr>
+  <H2 id='Outcome'></H2>
+</body>
+</html>
