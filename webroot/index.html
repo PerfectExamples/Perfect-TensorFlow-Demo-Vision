@@ -20,12 +20,16 @@
     fileInput = document.getElementById('file_input');
 
     fileInput.addEventListener("change", function(e) {
+      reset();
       var URL = window.webkitURL || window.URL;
       var url = URL.createObjectURL(e.target.files[0]);
       var img = new Image();
       img.src = url;
       img.onload = function () {
-        ctx.drawImage(img, 0, 0, 224, 224);
+        var w = img.width;
+        var h = img.height;
+        var len = w > h ? h : w;
+        ctx.drawImage(img, 0, 0, h, h, 0, 0, 224, 224);
       }//end img
     }, false);
 
@@ -113,7 +117,7 @@
   <p><input type=Reset onclick='reset()'>
     <input type="file" id="file_input">
     <input type=button value='Recognize' onclick='recog()'>
-  </p><hr><p>Note: local picture file must be a 224 x 224 image.</p><hr>
+  </p><hr>
   <H2 id='Outcome'></H2>
 </body>
 </html>
