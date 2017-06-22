@@ -113,10 +113,12 @@ func handler(data: [String:Any]) throws -> RequestHandler {
       response.setHeader(.contentType, value: "text/json")
         .appendBody(string: "{\"value\": \"Is it a \(tag)? (Possibility: \(p)%)\"}")
         .completed()
+      print(tag, p)
     }catch {
       response.setHeader(.contentType, value: "text/json")
         .appendBody(string: "{\"value\": \"\(error)\"}")
         .completed()
+      print("\(error)")
     }
   }
 }

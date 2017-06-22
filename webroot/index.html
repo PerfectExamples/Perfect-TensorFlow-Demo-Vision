@@ -14,6 +14,13 @@
   var x = "black",
       y = 2;
 
+  function setColor(color) {
+    x = color;
+  }
+
+  function setPen(size) {
+    y = size;
+  }
   function init() {
     outcome = document.getElementById('Outcome');
     canvas = document.getElementById('hwcanvas');
@@ -49,11 +56,40 @@
     canvas.addEventListener("mouseout", function (e) {
         findxy('out', e)
     }, false);
+
+    canvas.addEventListener("dragover", function (e) {
+        e.preventDefault();
+    }, false);
+
+    canvas.addEventListener("drop", function (e) {
+        reset();
+        var files = e.dataTransfer.files;
+        if (files.length > 0) {
+          var file = files[0];
+          if (typeof FileReader !== "undefined" && file.type.indexOf("image") != -1) {
+              var reader = new FileReader();
+              reader.onload = function(e) {
+                var img = new Image();
+                img.src = e.target.result;
+                img.onload = function () {
+                  var w = img.width;
+                  var h = img.height;
+                  var len = w > h ? h : w;
+                  ctx.drawImage(img, 0, 0, h, h, 0, 0, 224, 224);
+                }//end img
+              };//end function
+              reader.readAsDataURL(file);
+          }//end if
+        }//end if
+        e.preventDefault();
+    }, false);
+
+
     reset();
   }
 
   function draw() {
-    ctx.fillStyle = "rgb(0,0,0)";
+    ctx.fillStyle = x;
     ctx.beginPath();
     ctx.moveTo(prevX, prevY);
     ctx.lineTo(currX, currY);
@@ -111,12 +147,29 @@
 </script>
 </head>
 <body onload='init()'>
-  <H1>Perfect TensorFlow Demo - Computer Vision</H1>
+<H1>Perfect TensorFlow Demo - Computer Vision</H1>
   <P>Swift program that uses a pre-trained Inception model (http://arxiv.org/abs/1512.00567)</P>
-  <canvas id="hwcanvas" width=224 height=224></canvas>
-  <p><input type=Reset onclick='reset()'>
-    <input type="file" id="file_input">
-    <input type=button value='Recognize' onclick='recog()'>
+  <canvas id="hwcanvas" width=224 height=224 style="border:1px solid #000000;"></canvas>
+  <p>
+    <input type="range" onchange="setPen(this.value)" value="2" min="1" max="12"><br>
+  <button style="padding: 4px 8px; background-color: #000000" onclick="setColor('#000000')" tag="Black"></button>
+  <button style="padding: 4px 8px; background-color: #7bd148" onclick="setColor('#7bd148')" tag="Green"></button>
+  <button style="padding: 4px 8px; background-color: #5484ed" onclick="setColor('#5484ed')" tag="Bold blue"></button>
+  <button style="padding: 4px 8px; background-color: #a4bdfc" onclick="setColor('#a4bdfc')" tag="Blue"></button>
+  <button style="padding: 4px 8px; background-color: #46d6db" onclick="setColor('#46d6db')" tag="Turquoise"></button>
+  <button style="padding: 4px 8px; background-color: #7ae7bf" onclick="setColor('#7ae7bf')" tag="Light green"></button>
+  <button style="padding: 4px 8px; background-color: #51b749" onclick="setColor('#51b749')" tag="Bold green"></button>
+  <br>
+  <button style="padding: 4px 8px; background-color: #fbd75b" onclick="setColor('#fbd75b')" tag="Yellow"></button>
+  <button style="padding: 4px 8px; background-color: #ffb878" onclick="setColor('#ffb878')" tag="Orange"></button>
+  <button style="padding: 4px 8px; background-color: #ff887c" onclick="setColor('#ff887c')" tag="Red"></button>
+  <button style="padding: 4px 8px; background-color: #dc2127" onclick="setColor('#dc2127')" tag="Bold red"></button>
+  <button style="padding: 4px 8px; background-color: #dbadff" onclick="setColor('#dbadff')" tag="Purple"></button>
+  <button style="padding: 4px 8px; background-color: #e1e1e1" onclick="setColor('#e1e1e1')" tag="Gray"></button>
+  <button style="padding: 4px 8px; background-color: #ffffff" onclick="setColor('#ffffff')" tag="White"></button>
+<br>
+    <input type="file" id="file_input"><br>
+    <input type=Reset onclick='reset()'><input type=button value='Recognize' onclick='recog()'>
   </p><hr>
   <H2 id='Outcome'></H2>
 </body>
