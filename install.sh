@@ -1,6 +1,7 @@
 OSABR=$(echo $(uname)|tr '[:upper:]' '[:lower:]')
+VERSION=1.2.1
 DWN=/tmp/libtensorflow.tgz
-URL=https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-$OSABR-x86_64-1.2.0.tar.gz
+URL=https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-$OSABR-x86_64-$VERSION.tar.gz
 echo $URL
 wget $URL -O $DWN
 sudo tar xvf $DWN -C /usr/local ./lib/libtensorflow.so
