@@ -88,15 +88,15 @@ func handler(data: [String:Any]) throws -> RequestHandler {
     let scanner = inceptionModel
     else {
       response.setHeader(.contentType, value: "text/json")
-        .appendBody(string: "{\"value\": \"Invalid Input\"}")
-        .completed()
+        response.appendBody(string: "{\"value\": \"Invalid Input\"}")
+        response.completed()
       return
     }//end
     let jpeg = Data.From(b64)
     guard let data = Data(base64Encoded: jpeg) else {
       response.setHeader(.contentType, value: "text/json")
-        .appendBody(string: "{\"value\": \"Input is not a valid jpeg\"}")
-        .completed()
+        response.appendBody(string: "{\"value\": \"Input is not a valid jpeg\"}")
+        response.completed()
       return
     }//end guard
 
@@ -104,20 +104,20 @@ func handler(data: [String:Any]) throws -> RequestHandler {
       let result = try scanner.match(image: data)
       guard result.0 > -1 && result.0 < tags.count else {
         response.setHeader(.contentType, value: "text/json")
-          .appendBody(string: "{\"value\": \"what is this???\"}")
-          .completed()
+          response.appendBody(string: "{\"value\": \"what is this???\"}")
+          response.completed()
         return
       }//end
       let tag = tags[result.0]
       let p = result.1
       response.setHeader(.contentType, value: "text/json")
-        .appendBody(string: "{\"value\": \"Is it a \(tag)? (Possibility: \(p)%)\"}")
-        .completed()
+        response.appendBody(string: "{\"value\": \"Is it a \(tag)? (Possibility: \(p)%)\"}")
+        response.completed()
       print(tag, p)
     }catch {
       response.setHeader(.contentType, value: "text/json")
-        .appendBody(string: "{\"value\": \"\(error)\"}")
-        .completed()
+        response.appendBody(string: "{\"value\": \"\(error)\"}")
+        response.completed()
       print("\(error)")
     }
   }

@@ -1,0 +1,10 @@
+FROM perfectlysoft/perfectassistant:3.1
+# Perfect-COpenSSL-Linux.git--5093232834563591861/PADockerfile
+RUN apt-get -y update && apt-get install -y libssl-dev
+
+# Perfect-LinuxBridge.git-1581036685432548022/PADockerfile
+RUN apt-get -y update && apt-get install -y uuid-dev
+
+# Perfect-TensorFlow.git--7585565079711099406/PADockerfile
+RUN wget https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-1.2.0.tar.gz -O /tmp/tflib.tgz && tar xvf /tmp/tflib.tgz -C /usr/local ./lib/libtensorflow.so && rm /tmp/tflib.tgz
+RUN rm -rf /var/lib/apt/lists/*
