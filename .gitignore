@@ -1,7 +1,11 @@
 .DS_Store
-/.build
-/.build_lin
+/.build*
 /Packages
 /*.xcodeproj
 *.pins
 *.pb
+/*.resolved
+/*.pins
+/*.orig
+/*_deploy
+/.package*

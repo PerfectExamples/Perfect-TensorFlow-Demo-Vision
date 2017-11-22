@@ -164,7 +164,7 @@ do {
   fModel.close()
   try fTag.open(.read)
   let lines = try fTag.readString()
-  tags = lines.utf8.split(separator: 10).map { String(describing: $0) }
+  tags = lines.split(separator: "\n").map { String(describing: $0) }
   try TF.Open()
   inceptionModel = try LabelImage( Data(bytes: modelBytes) )
   print("library ready")
