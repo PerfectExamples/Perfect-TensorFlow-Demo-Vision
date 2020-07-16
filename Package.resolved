@@ -1,0 +1,97 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "COpenSSL",
+        "repositoryURL": "https://github.com/PerfectlySoft/Perfect-COpenSSL.git",
+        "state": {
+          "branch": null,
+          "revision": "ce3113e159b8c6d8565e5d8db2672b572c81aea9",
+          "version": "4.0.2"
+        }
+      },
+      {
+        "package": "PerfectCrypto",
+        "repositoryURL": "https://github.com/PerfectlySoft/Perfect-Crypto.git",
+        "state": {
+          "branch": null,
+          "revision": "98373fa3a6c3d551e498c1babe4f25f650fa1310",
+          "version": "3.3.0"
+        }
+      },
+      {
+        "package": "PerfectCZlib",
+        "repositoryURL": "https://github.com/PerfectlySoft/Perfect-CZlib-src.git",
+        "state": {
+          "branch": null,
+          "revision": "b63e46909aad937c6434766f8f8c6720d8f3bd05",
+          "version": "0.0.4"
+        }
+      },
+      {
+        "package": "PerfectHTTP",
+        "repositoryURL": "https://github.com/PerfectlySoft/Perfect-HTTP.git",
+        "state": {
+          "branch": null,
+          "revision": "122affd0bb5090c61bdc1e50e7f32ab6457d228e",
+          "version": "3.3.0"
+        }
+      },
+      {
+        "package": "PerfectHTTPServer",
+        "repositoryURL": "https://github.com/PerfectlySoft/Perfect-HTTPServer.git",
+        "state": {
+          "branch": null,
+          "revision": "4843cd54762d59b7e70841663ae561b279b80946",
+          "version": "3.0.23"
+        }
+      },
+      {
+        "package": "PerfectNet",
+        "repositoryURL": "https://github.com/PerfectlySoft/Perfect-Net.git",
+        "state": {
+          "branch": null,
+          "revision": "d00b2b9f4cccb4c398e1bcf18f767d6b8add6af7",
+          "version": "3.3.0"
+        }
+      },
+      {
+        "package": "PerfectTensorFlow",
+        "repositoryURL": "https://github.com/PerfectlySoft/Perfect-TensorFlow.git",
+        "state": {
+          "branch": null,
+          "revision": "dbbbedcfc541fd7dbda63c3350941ad1d2ba728c",
+          "version": "1.8.1"
+        }
+      },
+      {
+        "package": "PerfectThread",
+        "repositoryURL": "https://github.com/PerfectlySoft/Perfect-Thread.git",
+        "state": {
+          "branch": null,
+          "revision": "a50b9a33f08fce638f33ae3121613fe499cc23ec",
+          "version": "3.0.7"
+        }
+      },
+      {
+        "package": "PerfectLib",
+        "repositoryURL": "https://github.com/PerfectlySoft/PerfectLib.git",
+        "state": {
+          "branch": null,
+          "revision": "5a08c2a596df23a3ae30b6ac9cb509a38384166c",
+          "version": "3.1.4"
+        }
+      },
+      {
+        "package": "SwiftProtobuf",
+        "repositoryURL": "https://github.com/apple/swift-protobuf.git",
+        "state": {
+          "branch": null,
+          "revision": "f33185acd089405d365982ccab2f58469052a545",
+          "version": "1.10.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
