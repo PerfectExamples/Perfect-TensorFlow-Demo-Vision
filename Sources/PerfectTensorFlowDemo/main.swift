@@ -35,10 +35,10 @@ class LabelImage {
 
   public func match(image: Data) throws -> (Int, Int) {
     let g = try TF.Graph()
-    try g.import(definition: def)
+    _ = try g.import(definition: def)
     let normalized = try constructAndExecuteGraphToNormalizeImage(g, imageBytes: image)
     let possibilities = try executeInceptionGraph(g, image: normalized)
-    guard let m = possibilities.max(), let i = possibilities.index(of: m) else {
+    guard let m = possibilities.max(), let i = possibilities.firstIndex(of: m) else {
       throw TF.Panic.INVALID
     }//end guard
     return (i, Int(m * 100))
@@ -166,7 +166,7 @@ do {
   let lines = try fTag.readString()
   tags = lines.split(separator: "\n").map { String(describing: $0) }
   try TF.Open()
-  inceptionModel = try LabelImage( Data(bytes: modelBytes) )
+  inceptionModel = try LabelImage( Data(modelBytes) )
   print("library ready")
   try HTTPServer.launch(configurationData: confData)
  }catch {
