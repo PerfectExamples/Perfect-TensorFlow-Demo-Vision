@@ -48,7 +48,7 @@ This repository demonstrates how to apply Perfect TensorFlow, a Swift library of
 
 ## Compatibility with Swift
 
-The master branch of this project currently compiles with **Swift 3.1** or the **Swift 4.0** toolchain on both macOS / Ubuntu.
+The master branch of this project currently compiles with **Swift 5.2** toolchain on both macOS.
 
 ## Building & Running
 
