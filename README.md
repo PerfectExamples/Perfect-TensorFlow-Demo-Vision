@@ -54,8 +54,7 @@ The following will clone and build a sample http project and launch the server o
 ```
 git clone https://github.com/PerfectExamples/Perfect-TensorFlow-Demo-Vision.git
 cd Perfect-TensorFlow-Demo-Vision
-./install.sh
-./.build/debug/PerfectTensorFlowDemo
+./install.sh && swift run
 ```
 
 You should see the following output:
@@ -159,8 +158,4 @@ A comprehensive list of open issues can be found at [http://jira.perfect.org:808
 
 ## Further Information
 For more information on the Perfect project, please visit [perfect.org](http://perfect.org).
-
-
-## Now WeChat Subscription is Available (Chinese)
-<p align=center><img src="https://raw.githubusercontent.com/PerfectExamples/Perfect-Cloudinary-ImageUploader-Demo/master/qr.png"></p>
 

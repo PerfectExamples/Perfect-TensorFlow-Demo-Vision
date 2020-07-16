@@ -23,10 +23,7 @@
 
 <p align="center">
     <a href="https://developer.apple.com/swift/" target="_blank">
-        <img src="https://img.shields.io/badge/Swift-3.1-orange.svg?style=flat" alt="Swift 3.1">
-    </a>
-    <a href="https://developer.apple.com/swift/" target="_blank">
-        <img src="https://img.shields.io/badge/Swift-4.0-orange.svg?style=flat" alt="Swift 4.0">
+        <img src="https://img.shields.io/badge/Swift-5.2-orange.svg?style=flat" alt="Swift 5.2">
     </a>
     <a href="https://developer.apple.com/swift/" target="_blank">
         <img src="https://img.shields.io/badge/Platforms-OS%20X%20%7C%20Linux%20-lightgray.svg?style=flat" alt="Platforms OS X | Linux">
@@ -49,7 +46,7 @@ Perfect TensorFlow 人工智能与神经网络演示程序——机器视觉
 
 ## Swift 兼容性说明
 
-本项目目前使用 **Swift 3.1** 或者 **Swift 4.0** 工具链编译，可以在macOS / Ubuntu上使用。
+本项目目前使用 **Swift 5.2** 工具链编译，可以在macOS上使用。
 
 ## 编译运行
 
@@ -58,8 +55,7 @@ Perfect TensorFlow 人工智能与神经网络演示程序——机器视觉
 ```
 git clone https://github.com/PerfectExamples/Perfect-TensorFlow-Demo-Vision.git
 cd Perfect-TensorFlow-Demo-Vision
-./install.sh
-./.build/debug/PerfectTensorFlowDemo
+./install.sh && swift run
 ```
 
 应该能够看到以下输出：
@@ -166,6 +162,3 @@ let tag = tags[result.0]
 
 ## 更多内容
 关于Perfect更多内容，请参考[perfect.org](http://perfect.org)官网。
-
-## 扫一扫 Perfect 官网微信号
-<p align=center><img src="https://raw.githubusercontent.com/PerfectExamples/Perfect-Cloudinary-ImageUploader-Demo/master/qr.png"></p>

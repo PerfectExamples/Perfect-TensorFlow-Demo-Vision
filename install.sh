@@ -10,4 +10,3 @@ echo 'download AI model'
 wget https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip -O /tmp/in.zip
 echo 'unzip model files'
 unzip /tmp/in.zip -d /tmp
-swift build
